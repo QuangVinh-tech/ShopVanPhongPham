@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\models\\interfaces\\ishoppingcartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\models\\interfaces\\ishoppingcartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\models\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\models\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\models\\shoppingcartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\models\\shoppingcartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Program.cs",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Program.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Program.cs",
+              "RelativeToolTip": "ShopVanPhongPham\\Program.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T03:40:29.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\appsettings.json",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\appsettings.json",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\appsettings.json",
+              "RelativeToolTip": "ShopVanPhongPham\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-31T03:36:44.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IShoppingCartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Interfaces\\IShoppingCartRepository.cs",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\Interfaces\\IShoppingCartRepository.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Interfaces\\IShoppingCartRepository.cs",
+              "RelativeToolTip": "ShopVanPhongPham\\Models\\Interfaces\\IShoppingCartRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T03:27:58.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
+              "RelativeToolTip": "ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T03:27:31.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ShoppingCartItem.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\ShoppingCartItem.cs",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\ShoppingCartItem.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\ShoppingCartItem.cs",
+              "RelativeToolTip": "ShopVanPhongPham\\Models\\ShoppingCartItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T03:26:03.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Product.cs",
+              "RelativeToolTip": "ShopVanPhongPham\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T03:25:22.31Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
