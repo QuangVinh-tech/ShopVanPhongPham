@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|c:\\users\\asus\\source\\repos\\shopvanphongpham\\shopvanphongpham\\models\\interfaces\\ishoppingcartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB81B2C0-ABF9-4C7D-97A2-04830C18B81A}|ShopVanPhongPham\\ShopVanPhongPham.csproj|solutionrelative:shopvanphongpham\\models\\interfaces\\ishoppingcartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +50,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T05:01:49.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ShopVanPhongPham\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ShopVanPhongPham\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T04:57:57.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Program.cs",
               "RelativeDocumentMoniker": "ShopVanPhongPham\\Program.cs",
@@ -50,12 +84,11 @@
               "RelativeToolTip": "ShopVanPhongPham\\Program.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAUwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T03:40:29.831Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T03:40:29.831Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\appsettings.json",
               "RelativeDocumentMoniker": "ShopVanPhongPham\\appsettings.json",
@@ -67,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "IShoppingCartRepository.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Interfaces\\IShoppingCartRepository.cs",
               "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\Interfaces\\IShoppingCartRepository.cs",
@@ -80,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "IProductRepository.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
               "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
@@ -88,12 +121,11 @@
               "RelativeToolTip": "ShopVanPhongPham\\Models\\Interfaces\\IProductRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T03:27:31.407Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T03:27:31.407Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ShoppingCartItem.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\ShoppingCartItem.cs",
               "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\ShoppingCartItem.cs",
@@ -105,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\ShopVanPhongPham\\ShopVanPhongPham\\Models\\Product.cs",
               "RelativeDocumentMoniker": "ShopVanPhongPham\\Models\\Product.cs",
