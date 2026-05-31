@@ -1,6 +1,8 @@
 ﻿namespace ShopVanPhongPham.Models.Interfaces
 {
-    public class IProductRepository
+    public interface IProductRepository
     {
+        IEnumerable<Product> GetAllProducts();
+        Product? GetProductById(int id);
     }
 }
