@@ -4,7 +4,7 @@ using ShoppingCartApp.Models.Interfaces;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models.Interfaces;
 
-namespace ShoppingCartApp.Controllers
+namespace ShopVanPhongPham.Controllers
 {
     public class ShoppingCartController : Controller
     {
