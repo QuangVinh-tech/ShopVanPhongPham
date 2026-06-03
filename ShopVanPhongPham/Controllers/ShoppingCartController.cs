@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShoppingCartApp.Data;
-using ShoppingCartApp.Models.Interfaces;
+using ShopVanPhongPham.Data;
+using ShopVanPhongPham.Models.Interfaces;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models.Interfaces;
 
