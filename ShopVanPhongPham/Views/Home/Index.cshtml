@@ -1,8 +1,29 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<ShopVanPhongPham.Models.Product>
+
+@{
+    ViewData["Title"] = "Trang chủ - Shop Văn Phòng Phẩm";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Banner / Hero section (giữ nguyên từ Mobirise) -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Văn Phòng Phẩm Chất Lượng Cao</h1>
+        <p>Mua sắm dễ dàng – Giao hàng nhanh chóng</p>
+        <a href="/Product/Shop" class="btn btn-primary">Xem sản phẩm</a>
+    </div>
+</section>
+
+<!-- Sản phẩm nổi bật -->
+<section class="featured-products py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Sản Phẩm Nổi Bật</h2>
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    @await Html.PartialAsync("_Product", product)
+                </div>
+            }
+        </div>
+    </div>
+</section>

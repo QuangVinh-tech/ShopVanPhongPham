@@ -1,74 +1,55 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models.Interfaces;
-using ShopVanPhongPham.Data;
-using ShopVanPhongPham.Models.Interfaces;
+using ShopVanPhongPham.Models.Services;
 
 namespace ShopVanPhongPham.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private readonly IShoppingCartRepository _cartRepo;
+        private readonly IShoppingCartRepository _cart;
         private readonly AppDbContext _context;
 
-        public ShoppingCartController(IShoppingCartRepository cartRepo, AppDbContext context)
+        public ShoppingCartController(IShoppingCartRepository cart, AppDbContext context)
         {
-            _cartRepo = cartRepo;
+            _cart = cart;
             _context = context;
         }
 
-        // GET: /ShoppingCart/Index
+        // Hiển thị giỏ hàng
         public IActionResult Index()
         {
-            var items = _cartRepo.GetCartItems();
-            ViewBag.CartTotal = _cartRepo.GetCartTotal();
-            ViewBag.CartCount = _cartRepo.GetCartCount();
+            var items = _cart.GetCartItems();
+            ViewBag.CartTotal = _cart.GetTotal();
             return View(items);
         }
 
-        // POST: /ShoppingCart/AddToCart
-        [HttpPost]
-        public IActionResult AddToCart(int productId, int quantity = 1)
+        // Thêm sản phẩm vào giỏ
+        public IActionResult AddToCart(int id)
         {
-            var product = _context.Products.Find(productId);
-            if (product == null) return NotFound();
-
-            _cartRepo.AddToCart(product, quantity);
-            TempData["SuccessMessage"] = $"Đã thêm \"{product.Name}\" vào giỏ hàng!";
+            var product = _context.Products.Find(id);
+            if (product != null)
+            {
+                _cart.AddToCart(product);
+            }
             return RedirectToAction("Index");
         }
 
-        // POST: /ShoppingCart/Remove
-        [HttpPost]
-        public IActionResult Remove(int productId)
+        // Xóa 1 sản phẩm khỏi giỏ
+        public IActionResult RemoveFromCart(int id)
         {
-            _cartRepo.RemoveFromCart(productId);
-            TempData["SuccessMessage"] = "Đã xóa sản phẩm khỏi giỏ hàng.";
+            var product = _context.Products.Find(id);
+            if (product != null)
+            {
+                _cart.RemoveFromCart(product);
+            }
             return RedirectToAction("Index");
         }
 
-        // POST: /ShoppingCart/Increase
-        [HttpPost]
-        public IActionResult Increase(int productId)
+        // Xóa toàn bộ giỏ hàng
+        public IActionResult ClearCart()
         {
-            _cartRepo.IncreaseQuantity(productId);
-            return RedirectToAction("Index");
-        }
-
-        // POST: /ShoppingCart/Decrease
-        [HttpPost]
-        public IActionResult Decrease(int productId)
-        {
-            _cartRepo.DecreaseQuantity(productId);
-            return RedirectToAction("Index");
-        }
-
-        // POST: /ShoppingCart/Clear
-        [HttpPost]
-        public IActionResult Clear()
-        {
-            _cartRepo.ClearCart();
-            TempData["SuccessMessage"] = "Đã xóa toàn bộ giỏ hàng.";
+            _cart.ClearCart();
             return RedirectToAction("Index");
         }
     }

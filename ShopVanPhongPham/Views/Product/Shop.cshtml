@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ShopVanPhongPham.Models.Product>
+
+@{
+    ViewData["Title"] = "Cửa Hàng";
+}
+
+<section class="shop-page py-5">
+    <div class="container">
+        <h2 class="mb-4">🛒 Tất Cả Sản Phẩm</h2>
+
+        <!-- Thanh lọc / tìm kiếm (tùy chọn) -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="🔍 Tìm sản phẩm..." id="searchInput" />
+            </div>
+        </div>
+
+        <div class="row" id="productGrid">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-3 mb-4 product-item">
+                    @await Html.PartialAsync("_Product", product)
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Tìm kiếm đơn giản phía client
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const keyword = this.value.toLowerCase();
+            document.querySelectorAll('.product-item').forEach(item => {
+                const name = item.querySelector('.card-title')?.textContent.toLowerCase() || '';
+                item.style.display = name.includes(keyword) ? '' : 'none';
+            });
+        });
+    </script>
+}
