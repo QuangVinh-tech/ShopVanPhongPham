@@ -15,52 +15,36 @@
         </nav>
 
         <div class="row">
-            <!-- Ảnh sản phẩm -->
             <div class="col-md-5">
                 <img src="@Model.ImageUrl"
                      alt="@Model.Name"
                      class="img-fluid rounded shadow"
                      style="width:100%; object-fit:cover;" />
             </div>
-
-            <!-- Thông tin sản phẩm -->
             <div class="col-md-7">
-                <h2 class="product-title">@Model.Name</h2>
-
-                <div class="price-box my-3">
-                    <span class="fs-3 fw-bold text-danger">
-                        @Model.Price.ToString("N0") ₫
-                    </span>
+                <h2>@Model.Name</h2>
+                <div class="my-3">
+                    <span class="fs-3 fw-bold text-danger">@Model.Price.ToString("N0") ₫</span>
                 </div>
-
-                <p class="product-description text-muted">@Model.Description</p>
-
+                <p class="text-muted">@Model.Description</p>
                 <hr />
 
-                <div class="d-flex gap-2 mt-3">
-                    <!-- Thêm vào giỏ -->
-                    <a asp-controller="ShoppingCart"
-                       asp-action="AddToCart"
-                       asp-route-id="@Model.Id"
-                       class="btn btn-primary btn-lg">
-                        🛒 Thêm vào giỏ hàng
-                    </a>
+                <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <label class="mb-0">Số lượng:</label>
+                        <input type="number" name="quantity" value="1" min="1"
+                               class="form-control" style="width:80px" />
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">🛒 Thêm vào giỏ hàng</button>
+                        <a asp-controller="Product" asp-action="Shop"
+                           class="btn btn-outline-secondary btn-lg">← Tiếp tục mua</a>
+                    </div>
+                </form>
 
-                    <!-- Quay lại -->
-                    <a asp-controller="Product"
-                       asp-action="Shop"
-                       class="btn btn-outline-secondary btn-lg">
-                        ← Tiếp tục mua
-                    </a>
-                </div>
-
-                <!-- Chính sách -->
-                <div class="policy-box mt-4 p-3 bg-light rounded">
-                    <small>
-                        ✅ Hàng chính hãng 100% &nbsp;|&nbsp;
-                        🚚 Giao hàng 1–3 ngày &nbsp;|&nbsp;
-                        🔄 Đổi trả trong 7 ngày
-                    </small>
+                <div class="mt-4 p-3 bg-light rounded">
+                    <small>✅ Hàng chính hãng 100% &nbsp;|&nbsp; 🚚 Giao hàng 1–3 ngày &nbsp;|&nbsp; 🔄 Đổi trả 7 ngày</small>
                 </div>
             </div>
         </div>
