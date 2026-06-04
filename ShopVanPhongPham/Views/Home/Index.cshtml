@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopVanPhongPham.Models.Product>
+﻿    @model IEnumerable<ShopVanPhongPham.Models.Product>
 
 @{
     ViewData["Title"] = "Trang chủ - Shop Văn Phòng Phẩm";
@@ -21,7 +21,7 @@
             @foreach (var product in Model)
             {
                 <div class="col-md-3 mb-4">
-                    @await Html.PartialAsync("_Product", product)
+                   @await Html.PartialAsync("_Product", product) 
                 </div>
             }
         </div>
