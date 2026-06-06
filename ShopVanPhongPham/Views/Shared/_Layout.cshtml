@@ -4,38 +4,124 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Shop Văn Phòng Phẩm</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+            letter-spacing: .5px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+            .nav-link:hover {
+                color: #ffc107 !important;
+            }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+            color: #fff;
+            padding: 90px 0 70px;
+            text-align: center;
+        }
+
+            .hero-section h1 {
+                font-size: 2.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .hero-section p {
+                font-size: 1.2rem;
+                color: #ccc;
+                margin-bottom: 2rem;
+            }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,.08);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(0,0,0,.15);
+            }
+
+        .card-img-top {
+            border-radius: 12px 12px 0 0;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        footer {
+            background: #1a1a2e !important;
+        }
+
+            footer a {
+                color: #aaa;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    color: #fff;
+                }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">🖊️ VPP Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-pencil-square me-1 text-warning"></i>VPP Shop
+            </a>
+            <button class="navbar-toggler border-0" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                    aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarMain">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <i class="bi bi-house-door me-1"></i>Trang chủ
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Product" asp-action="Shop">Sản phẩm</a>
+                        <a class="nav-link" asp-controller="Product" asp-action="Shop">
+                            <i class="bi bi-grid me-1"></i>Sản phẩm
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Liên hệ</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Contact">
+                            <i class="bi bi-envelope me-1"></i>Liên hệ
+                        </a>
                     </li>
                 </ul>
+
                 @{
                     var cartCount = Context.Session.GetInt32("CartCount") ?? 0;
                 }
-                <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-outline-light position-relative">
-                    🛒 Giỏ hàng
+                <a asp-controller="ShoppingCart" asp-action="Index"
+                   class="btn btn-outline-warning position-relative ms-2">
+                    <i class="bi bi-cart3 me-1"></i>Giỏ hàng
                     @if (cartCount > 0)
                     {
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              style="font-size:.65rem">
                             @cartCount
+                            <span class="visually-hidden">sản phẩm</span>
                         </span>
                     }
                 </a>
@@ -43,13 +129,61 @@
         </div>
     </nav>
 
-    <main class="container my-4">
+    <main>
         @RenderBody()
     </main>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="bg-dark text-white pt-5 pb-3 mt-5">
         <div class="container">
-            <p class="mb-0">&copy; 2026 Shop Văn Phòng Phẩm</p>
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold text-warning mb-3">
+                        <i class="bi bi-pencil-square me-1"></i>VPP Shop
+                    </h5>
+                    <p class="text-secondary small">
+                        Cung cấp văn phòng phẩm chất lượng cao,<br />
+                        giá cạnh tranh, giao hàng nhanh toàn quốc.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase text-secondary fw-bold mb-3">Liên kết nhanh</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-1">
+                            <a asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-chevron-right me-1"></i>Trang chủ
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a asp-controller="Product" asp-action="Shop">
+                                <i class="bi bi-chevron-right me-1"></i>Cửa hàng
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a asp-controller="Home" asp-action="Contact">
+                                <i class="bi bi-chevron-right me-1"></i>Liên hệ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-uppercase text-secondary fw-bold mb-3">Liên hệ</h6>
+                    <ul class="list-unstyled small text-secondary">
+                        <li class="mb-2">
+                            <i class="bi bi-geo-alt-fill text-warning me-2"></i>123 Nguyễn Văn A, Q.1, TP.HCM
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-telephone-fill text-warning me-2"></i>0901 234 567
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-envelope-fill text-warning me-2"></i>lienhe@shopvpp.vn
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary mt-4" />
+            <p class="text-center text-secondary small mb-0">
+                &copy; 2026 Shop Văn Phòng Phẩm &mdash; Thiết kế bởi Nhóm MVC
+            </p>
         </div>
     </footer>
 
