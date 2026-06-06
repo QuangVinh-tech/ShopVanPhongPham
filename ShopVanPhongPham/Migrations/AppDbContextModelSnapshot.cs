@@ -121,8 +121,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 1,
                             Category = "But",
-                            Description = "Bút bi xanh cao cấp",
-                            ImageUrl = "/assets/images/p1.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=But+Bi",
                             Name = "Bút bi Thiên Long",
                             Price = 5000m
                         },
@@ -130,8 +130,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 2,
                             Category = "But",
-                            Description = "Bút chì vẽ kỹ thuật",
-                            ImageUrl = "/assets/images/p2.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=But+Chi",
                             Name = "Bút chì 2B",
                             Price = 4000m
                         },
@@ -139,8 +139,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 3,
                             Category = "So",
-                            Description = "Sổ tay bìa cứng 200 trang",
-                            ImageUrl = "/assets/images/p3.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=So+Tay",
                             Name = "Sổ tay A5",
                             Price = 35000m
                         },
@@ -148,8 +148,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 4,
                             Category = "So",
-                            Description = "Tập học sinh kẻ ngang",
-                            ImageUrl = "/assets/images/p4.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Tap+200",
                             Name = "Tập 200 trang",
                             Price = 15000m
                         },
@@ -157,8 +157,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 5,
                             Category = "DungCu",
-                            Description = "Thước nhựa trong suốt",
-                            ImageUrl = "/assets/images/p5.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Thuoc+Ke",
                             Name = "Thước kẻ 30cm",
                             Price = 8000m
                         },
@@ -166,8 +166,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 6,
                             Category = "DungCu",
-                            Description = "Kéo cắt giấy inox",
-                            ImageUrl = "/assets/images/p6.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Keo",
                             Name = "Kéo văn phòng",
                             Price = 25000m
                         },
@@ -175,8 +175,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 7,
                             Category = "DungCu",
-                            Description = "Bấm kim 24/6 tiêu chuẩn",
-                            ImageUrl = "/assets/images/p7.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Bam+Kim",
                             Name = "Bấm kim",
                             Price = 30000m
                         },
@@ -184,8 +184,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 8,
                             Category = "Giay",
-                            Description = "Giấy in laser trắng sáng",
-                            ImageUrl = "/assets/images/p8.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Giay+A4",
                             Name = "Giấy A4 500 tờ",
                             Price = 85000m
                         },
@@ -193,8 +193,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 9,
                             Category = "DungCu",
-                            Description = "Băng keo văn phòng 2cm",
-                            ImageUrl = "/assets/images/p9.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Bang+Keo",
                             Name = "Băng keo trong",
                             Price = 10000m
                         },
@@ -202,8 +202,8 @@ namespace ShopVanPhongPham.Migrations
                         {
                             Id = 10,
                             Category = "DungCu",
-                            Description = "Hộp đựng bút nhựa ABS",
-                            ImageUrl = "/assets/images/p10.jpg",
+                            Description = "",
+                            ImageUrl = "https://placehold.co/300x300?text=Hop+But",
                             Name = "Hộp bút để bàn",
                             Price = 45000m
                         });
