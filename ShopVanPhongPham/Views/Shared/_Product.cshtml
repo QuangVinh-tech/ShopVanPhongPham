@@ -1,10 +1,45 @@
 ﻿@model ShopVanPhongPham.Models.Product
 
-<div class="card" style="width: 18rem; margin: 10px;">
-    <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Name">
-    <div class="card-body">
-        <h5 class="card-title">@Model.Name</h5>
-        <p class="card-text">@Model.Price.ToString("N0") VNĐ</p>
-        <a href="/Product/Detail/@Model.Id" class="btn btn-primary">Xem chi tiết</a>
+<div class="card h-100">
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id">
+        <img src="@Model.ImageUrl"
+             class="card-img-top"
+             alt="@Model.Name"
+             onerror="this.src='/assets/images/placeholder.jpg'" />
+    </a>
+
+    <div class="card-body d-flex flex-column">
+        <h6 class="card-title fw-semibold text-truncate" title="@Model.Name">
+            @Model.Name
+        </h6>
+
+        <span class="badge bg-secondary mb-2" style="width:fit-content; font-size:.7rem">
+            @Model.Category
+        </span>
+
+        <p class="card-text text-danger fw-bold fs-6 mb-3">
+            @Model.Price.ToString("N0") ₫
+        </p>
+
+        <div class="mt-auto d-flex gap-2">
+            <a asp-controller="Product"
+               asp-action="Detail"
+               asp-route-id="@Model.Id"
+               class="btn btn-outline-primary btn-sm flex-grow-1">
+                <i class="bi bi-eye me-1"></i>Chi tiết
+            </a>
+
+            <form asp-controller="ShoppingCart"
+                  asp-action="AddToCart"
+                  method="post"
+                  style="display:contents">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <input type="hidden" name="quantity" value="1" />
+                <button type="submit" class="btn btn-warning btn-sm" title="Thêm vào giỏ">
+                    <i class="bi bi-cart-plus"></i>
+                </button>
+            </form>
+        </div>
     </div>
 </div>
