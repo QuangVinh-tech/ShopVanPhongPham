@@ -1,15 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using Microsoft.Extensions.DependencyInjection
 
-@if (SignInManager.IsSignedIn(User))
+@{
+    var signInManager = Context.RequestServices.GetService<SignInManager<IdentityUser>>();
+    var userManager = Context.RequestServices.GetService<UserManager<IdentityUser>>();
+    var isIdentityReady = signInManager != null && userManager != null;
+}
+
+@if (!isIdentityReady)
 {
-    <!-- Đã đăng nhập: hiện tên + dropdown -->
+    @* Identity chưa setup — ẩn hoàn toàn, không crash *@
+}
+else if (signInManager!.IsSignedIn(User))
+{
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" href="#"
            id="userDropdown" role="button"
            data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-circle me-1"></i>@UserManager.GetUserName(User)
+            <i class="bi bi-person-circle me-1"></i>@userManager!.GetUserName(User)
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <li>
@@ -33,7 +41,6 @@
 }
 else
 {
-    <!-- Chưa đăng nhập: nút Login + Register -->
     <li class="nav-item">
         <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
             <i class="bi bi-box-arrow-in-right me-1"></i>Đăng nhập
