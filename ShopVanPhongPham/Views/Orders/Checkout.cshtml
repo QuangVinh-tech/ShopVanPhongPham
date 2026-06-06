@@ -2,7 +2,7 @@
 @model List<ShoppingCartItem>
 @{
     ViewData["Title"] = "Thanh toán";
-    var total = _cartRepo is not null ? 0 : Model.Sum(i => i.Product!.Price * i.Quantity);
+    var total = Model.Sum(i => i.Product!.Price * i.Quantity);
 }
 
 <div class="container py-4">
