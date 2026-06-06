@@ -1,0 +1,123 @@
+﻿@using ShopVanPhongPham.Models
+@model List<ShoppingCartItem>
+@{
+    ViewData["Title"] = "Thanh toán";
+    var total = _cartRepo is not null ? 0 : Model.Sum(i => i.Product!.Price * i.Quantity);
+}
+
+<div class="container py-4">
+    <h2 class="fw-bold mb-4">🛍️ Xác nhận & Thanh toán</h2>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">Vui lòng điền đầy đủ thông tin.</div>
+    }
+
+    <div class="row g-4">
+
+        {{!-- CỘT TRÁI: Tóm tắt giỏ hàng --}}
+        <div class="col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">🧾 Giỏ hàng của bạn</h5>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th class="text-center">SL</th>
+                                <th class="text-end">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Product!.Name</td>
+                                    <td class="text-center">@item.Quantity</td>
+                                    <td class="text-end">
+                                        @((item.Product.Price * item.Quantity).ToString("N0")) đ
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot class="table-secondary">
+                            <tr>
+                                <td colspan="2" class="fw-bold">Tổng cộng</td>
+                                <td class="text-end fw-bold text-danger fs-5">
+                                    @Model.Sum(i => i.Product!.Price * i.Quantity).ToString("N0") đ
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{!-- CỘT PHẢI: Form thông tin giao hàng --}}
+        <div class="col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">📦 Thông tin giao hàng</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Checkout" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">
+                                    Họ <span class="text-danger">*</span>
+                                </label>
+                                <input name="firstName" class="form-control"
+                                       placeholder="Nguyễn" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">
+                                    Tên <span class="text-danger">*</span>
+                                </label>
+                                <input name="lastName" class="form-control"
+                                       placeholder="Văn A" required />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    Email <span class="text-danger">*</span>
+                                </label>
+                                <input name="email" type="email" class="form-control"
+                                       placeholder="example@email.com" required />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    Số điện thoại <span class="text-danger">*</span>
+                                </label>
+                                <input name="phone" class="form-control"
+                                       placeholder="0901234567" required />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    Địa chỉ giao hàng <span class="text-danger">*</span>
+                                </label>
+                                <textarea name="address" class="form-control" rows="3"
+                                          placeholder="Số nhà, đường, phường, quận, tỉnh/thành"
+                                          required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                ✅ Đặt hàng ngay
+                            </button>
+                            <a asp-controller="ShoppingCart" asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                ← Quay lại giỏ hàng
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
