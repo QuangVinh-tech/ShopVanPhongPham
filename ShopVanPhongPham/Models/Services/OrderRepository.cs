@@ -14,7 +14,7 @@ namespace ShopVanPhongPham.Models.Services
             _cart = cart;
         }
 
-        public void PlaceOrder(Order order)
+        public Order PlaceOrder(Order order)
         {
             var cartItems = _cart.GetCartItems();
             order.OrderDetails = new List<OrderDetail>();
@@ -34,6 +34,8 @@ namespace ShopVanPhongPham.Models.Services
 
             _context.Orders.Add(order);
             _context.SaveChanges();
+
+            return order;
         }
     }
 }
