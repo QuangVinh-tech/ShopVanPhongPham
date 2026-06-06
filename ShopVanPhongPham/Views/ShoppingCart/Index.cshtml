@@ -108,9 +108,15 @@
                                 <span>Tổng cộng:</span>
                                 <span class="text-danger">@ViewBag.CartTotal?.ToString("N0") ₫</span>
                             </div>
+
+                            {{!-- ✅ ĐÃ SỬA: button → link tới Orders/Checkout --}}
                             <div class="d-grid mt-3">
-                                <button class="btn btn-success btn-lg">💳 Thanh toán</button>
+                                <a asp-controller="Orders" asp-action="Checkout"
+                                   class="btn btn-success btn-lg">
+                                    💳 Thanh toán
+                                </a>
                             </div>
+
                             <div class="d-grid mt-2">
                                 <a href="/Product/Shop" class="btn btn-outline-primary">← Tiếp tục mua</a>
                             </div>
