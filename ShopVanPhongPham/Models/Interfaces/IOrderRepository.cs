@@ -2,7 +2,7 @@
 {
     public interface IOrderRepository
     {
-        void PlaceOrder(Order order);
+        Order PlaceOrder(Order order);
     }
 
 }
