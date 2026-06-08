@@ -10,28 +10,33 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public ProductController(AppDbContext context)
+        public ProductController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
-        // Danh sách sản phẩm
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
-            return View(products);
+            return View(_context.Products.ToList());
         }
 
-        // Thêm sản phẩm
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public async Task<IActionResult> Create(Product product, IFormFile? imageFile)
         {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+                var savePath = Path.Combine(_env.WebRootPath, "assets", "images", fileName);
+                using var stream = new FileStream(savePath, FileMode.Create);
+                await imageFile.CopyToAsync(stream);
+                product.ImageUrl = "/assets/images/" + fileName;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Products.Add(product);
@@ -42,7 +47,6 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             return View(product);
         }
 
-        // Sửa sản phẩm
         public IActionResult Edit(int id)
         {
             var product = _context.Products.Find(id);
@@ -51,19 +55,27 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public async Task<IActionResult> Edit(Product product, IFormFile? imageFile)
         {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+                var savePath = Path.Combine(_env.WebRootPath, "assets", "images", fileName);
+                using var stream = new FileStream(savePath, FileMode.Create);
+                await imageFile.CopyToAsync(stream);
+                product.ImageUrl = "/assets/images/" + fileName;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Products.Update(product);
                 _context.SaveChanges();
-                TempData["Success"] = "Cập nhật sản phẩm thành công!";
+                TempData["Success"] = "Cập nhật thành công!";
                 return RedirectToAction("Index");
             }
             return View(product);
         }
 
-        // Xóa sản phẩm
         public IActionResult Delete(int id)
         {
             var product = _context.Products.Find(id);
@@ -79,7 +91,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             {
                 _context.Products.Remove(product);
                 _context.SaveChanges();
-                TempData["Success"] = "Xóa sản phẩm thành công!";
+                TempData["Success"] = "Xóa thành công!";
             }
             return RedirectToAction("Index");
         }

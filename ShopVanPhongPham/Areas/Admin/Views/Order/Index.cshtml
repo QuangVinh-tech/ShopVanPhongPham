@@ -1,0 +1,58 @@
+﻿@using ShopVanPhongPham.Models
+@model List<Order>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="fw-bold mb-4">🧾 Quản lý đơn hàng</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Chưa có đơn hàng nào.</div>
+}
+else
+{
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Khách hàng</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Sản phẩm</th>
+                        <th class="text-end">Tổng tiền</th>
+                        <th>Thời gian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>#@order.Id</td>
+                            <td>@order.FirstName @order.LastName</td>
+                            <td>@order.Email</td>
+                            <td>@order.Address</td>
+                            <td>
+                                @foreach (var detail in order.OrderDetails!)
+                                {
+                                    <small class="d-block">
+                                        @detail.Product?.Name x @detail.Quantity
+                                    </small>
+                                }
+                            </td>
+                            <td class="text-end fw-bold text-danger">
+                                @order.OrderTotal.ToString("N0") ₫
+                            </td>
+                            <td>
+                                <small>@order.OrderPlaced.ToString("dd/MM/yyyy HH:mm")</small>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

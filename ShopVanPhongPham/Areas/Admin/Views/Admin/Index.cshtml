@@ -3,30 +3,38 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="fw-bold mb-4">📊 Dashboard</h2>
+<h2 class="fw-bold mb-4"> Dashboard</h2>
 
-<div class="row g-4">
+<div class="row g-4 mb-4">
     <div class="col-md-3">
         <div class="card text-white bg-primary shadow">
             <div class="card-body">
-                <h5><i class="bi bi-box me-2"></i>Sản phẩm</h5>
-                <h2>10</h2>
+                <h6><i class="bi bi-box me-2"></i>Sản phẩm</h6>
+                <h2 class="fw-bold">@ViewBag.TotalProducts</h2>
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card text-white bg-success shadow">
             <div class="card-body">
-                <h5><i class="bi bi-receipt me-2"></i>Đơn hàng</h5>
-                <h2>0</h2>
+                <h6><i class="bi bi-receipt me-2"></i>Đơn hàng</h6>
+                <h2 class="fw-bold">@ViewBag.TotalOrders</h2>
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card text-white bg-warning shadow">
             <div class="card-body">
-                <h5><i class="bi bi-people me-2"></i>Người dùng</h5>
-                <h2>0</h2>
+                <h6><i class="bi bi-people me-2"></i>Người dùng</h6>
+                <h2 class="fw-bold">@ViewBag.TotalUsers</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-danger shadow">
+            <div class="card-body">
+                <h6><i class="bi bi-cash-stack me-2"></i>Doanh thu</h6>
+                <h2 class="fw-bold">@(((decimal)ViewBag.TotalRevenue).ToString("N0")) ₫</h2>
             </div>
         </div>
     </div>

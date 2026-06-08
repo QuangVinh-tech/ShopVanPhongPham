@@ -1,4 +1,5 @@
-﻿using ShopVanPhongPham.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models.Interfaces;
 
 namespace ShopVanPhongPham.Models.Services
@@ -36,6 +37,14 @@ namespace ShopVanPhongPham.Models.Services
             _context.SaveChanges();
 
             return order;
+        }
+        public List<Order> GetAllOrders()
+        {
+            return _context.Orders
+                .Include(o => o.OrderDetails)
+                .ThenInclude(od => od.Product)
+                .OrderByDescending(o => o.OrderPlaced)
+                .ToList();
         }
     }
 }
