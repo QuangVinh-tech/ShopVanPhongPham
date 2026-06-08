@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShopVanPhongPham.Models;
 using ShopVanPhongPham.Models.Interfaces;
 
@@ -64,7 +65,7 @@ public class OrdersController : Controller
             }).ToList()
         };
 
-        var placedOrder = _orderRepo.PlaceOrder(order); // ← trả về Order có Id
+        var placedOrder = _orderRepo.PlaceOrder(order);
         _cartRepo.ClearCart();
 
         return RedirectToAction("CheckoutComplete", new { orderId = placedOrder.Id });
@@ -73,8 +74,19 @@ public class OrdersController : Controller
     // GET /Orders/CheckoutComplete?orderId=5
     public IActionResult CheckoutComplete(int orderId)
     {
-        // Truyền orderId qua ViewBag để hiển thị
         ViewBag.OrderId = orderId;
         return View();
+    }
+
+    // GET /Orders/MyOrders
+    [Authorize]
+    public IActionResult MyOrders()
+    {
+        var userEmail = User.Identity!.Name;
+        var orders = _orderRepo.GetAllOrders()
+                               .Where(o => o.Email == userEmail)
+                               .OrderByDescending(o => o.OrderPlaced)
+                               .ToList();
+        return View(orders);
     }
 }
