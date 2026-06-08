@@ -3,6 +3,7 @@
     public interface IOrderRepository
     {
         Order PlaceOrder(Order order);
+        List<Order> GetAllOrders();
     }
 
 }
