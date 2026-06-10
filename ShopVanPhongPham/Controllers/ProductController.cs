@@ -15,7 +15,17 @@ public class ProductController : Controller
     // /Product/Shop
     public IActionResult Shop(string? search, string? category)
     {
-        var products = _productRepo.GetAllProducts(); // ← không await
+        var allProducts = _productRepo.GetAllProducts();
+
+        // Lấy danh sách category cho dropdown
+        var categories = allProducts
+            .Where(p => !string.IsNullOrEmpty(p.Category))
+            .Select(p => p.Category!)
+            .Distinct()
+            .OrderBy(c => c)
+            .ToList();
+
+        var products = allProducts.AsEnumerable();
 
         if (!string.IsNullOrEmpty(search))
             products = products
@@ -27,13 +37,15 @@ public class ProductController : Controller
 
         ViewBag.Search = search;
         ViewBag.Category = category;
+        ViewBag.Categories = categories;
+
         return View(products.ToList());
     }
 
     // /Product/Detail/5
     public IActionResult Detail(int id)
     {
-        var product = _productRepo.GetProductById(id); // ← không await
+        var product = _productRepo.GetProductById(id);
         if (product == null) return NotFound();
         return View(product);
     }
