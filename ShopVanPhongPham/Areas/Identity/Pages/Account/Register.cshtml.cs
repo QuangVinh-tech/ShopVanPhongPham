@@ -145,7 +145,19 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    var message = error.Code switch
+                    {
+                        "PasswordTooShort" => "Mật khẩu phải có ít nhất 6 ký tự.",
+                        "PasswordRequiresNonAlphanumeric" => "Mật khẩu phải có ít nhất 1 ký tự đặc biệt (vd: @, #, !).",
+                        "PasswordRequiresDigit" => "Mật khẩu phải có ít nhất 1 chữ số (0-9).",
+                        "PasswordRequiresLower" => "Mật khẩu phải có ít nhất 1 chữ thường (a-z).",
+                        "PasswordRequiresUpper" => "Mật khẩu phải có ít nhất 1 chữ hoa (A-Z).",
+                        "DuplicateEmail" => "Email này đã được đăng ký.",
+                        "DuplicateUserName" => "Tên tài khoản đã tồn tại.",
+                        "InvalidEmail" => "Email không hợp lệ.",
+                        _ => error.Description
+                    };
+                    ModelState.AddModelError(string.Empty, message);
                 }
             }
 
