@@ -4,6 +4,7 @@
     {
         Order PlaceOrder(Order order);
         List<Order> GetAllOrders();
+        List<Order> GetOrdersByEmail(string email);
     }
 
 }
