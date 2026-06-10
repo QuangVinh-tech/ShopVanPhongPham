@@ -46,5 +46,15 @@ namespace ShopVanPhongPham.Models.Services
                 .OrderByDescending(o => o.OrderPlaced)
                 .ToList();
         }
+
+        public List<Order> GetOrdersByEmail(string email)
+        {
+            return _context.Orders
+                .Include(o => o.OrderDetails)
+                .ThenInclude(od => od.Product)
+                .Where(o => o.Email == email)
+                .OrderByDescending(o => o.OrderPlaced)
+                .ToList();
+        }
     }
 }
