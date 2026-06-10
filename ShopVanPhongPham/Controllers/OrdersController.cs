@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using ShopVanPhongPham.Models;
 using ShopVanPhongPham.Models.Interfaces;
 
@@ -8,12 +10,15 @@ public class OrdersController : Controller
 {
     private readonly IOrderRepository _orderRepo;
     private readonly IShoppingCartRepository _cartRepo;
+    private readonly UserManager<IdentityUser> _userManager;
 
     public OrdersController(IOrderRepository orderRepo,
-                            IShoppingCartRepository cartRepo)
+                            IShoppingCartRepository cartRepo,
+                            UserManager<IdentityUser> userManager)
     {
         _orderRepo = orderRepo;
         _cartRepo = cartRepo;
+        _userManager = userManager;
     }
 
     // GET /Orders/Checkout
@@ -64,17 +69,28 @@ public class OrdersController : Controller
             }).ToList()
         };
 
-        var placedOrder = _orderRepo.PlaceOrder(order); // ← trả về Order có Id
+        var placedOrder = _orderRepo.PlaceOrder(order);
         _cartRepo.ClearCart();
 
         return RedirectToAction("CheckoutComplete", new { orderId = placedOrder.Id });
     }
 
-    // GET /Orders/CheckoutComplete?orderId=5
+    // GET /Orders/CheckoutComplete
     public IActionResult CheckoutComplete(int orderId)
     {
-        // Truyền orderId qua ViewBag để hiển thị
         ViewBag.OrderId = orderId;
         return View();
+    }
+
+    // GET /Orders/MyOrders
+    [Authorize]
+    public async Task<IActionResult> MyOrders()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var orders = _orderRepo.GetAllOrders()
+                               .Where(o => o.Email == user!.Email)
+                               .OrderByDescending(o => o.OrderPlaced)
+                               .ToList();
+        return View(orders);
     }
 }

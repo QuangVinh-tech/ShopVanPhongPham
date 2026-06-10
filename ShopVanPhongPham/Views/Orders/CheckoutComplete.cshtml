@@ -27,9 +27,13 @@
                 ⏰ Chúng tôi sẽ liên hệ xác nhận trong vòng <strong>30 phút</strong>.
             </p>
         </div>
-        <div class="card-footer bg-transparent">
+        <div class="card-footer bg-transparent d-grid gap-2">
+            <a asp-controller="Orders" asp-action="MyOrders"
+               class="btn btn-outline-success btn-lg">
+                📦 Xem đơn hàng của tôi
+            </a>
             <a asp-controller="Home" asp-action="Index"
-               class="btn btn-primary w-100 btn-lg">
+               class="btn btn-primary btn-lg">
                 🏠 Tiếp tục mua sắm
             </a>
         </div>
