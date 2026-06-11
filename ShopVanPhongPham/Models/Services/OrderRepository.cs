@@ -17,27 +17,19 @@ namespace ShopVanPhongPham.Models.Services
 
         public Order PlaceOrder(Order order)
         {
-            var cartItems = _cart.GetCartItems();
-            order.OrderDetails = new List<OrderDetail>();
+            // Chỉ set OrderPlaced và OrderTotal nếu chưa có
+            if (order.OrderPlaced == default)
+                order.OrderPlaced = DateTime.Now;
 
-            foreach (var item in cartItems)
-            {
-                order.OrderDetails.Add(new OrderDetail
-                {
-                    ProductId = item.Product!.Id,
-                    Quantity = item.Quantity,
-                    Price = item.Product.Price
-                });
-            }
+            if (order.OrderTotal == 0)
+                order.OrderTotal = _cart.GetCartTotal();
 
-            order.OrderPlaced = DateTime.Now;
-            order.OrderTotal = _cart.GetCartTotal();
-
+            // KHÔNG tạo lại OrderDetails — dùng data từ controller truyền vào
             _context.Orders.Add(order);
             _context.SaveChanges();
 
             return order;
-        }
+        }  
         public List<Order> GetAllOrders()
         {
             return _context.Orders
