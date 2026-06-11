@@ -35,14 +35,12 @@ public class OrdersController : Controller
     // POST /Orders/Checkout
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Checkout(
-        string firstName, string lastName,
-        string email, string phone,
-        string address)
+    public async Task<IActionResult> Checkout(
+     string firstName, string lastName,
+     string phone, string address)
     {
         if (string.IsNullOrWhiteSpace(firstName) ||
             string.IsNullOrWhiteSpace(lastName) ||
-            string.IsNullOrWhiteSpace(email) ||
             string.IsNullOrWhiteSpace(phone) ||
             string.IsNullOrWhiteSpace(address))
         {
@@ -50,13 +48,16 @@ public class OrdersController : Controller
             return View(_cartRepo.GetCartItems());
         }
 
-        var cartItems = _cartRepo.GetCartItems();
+        // ← Lấy email từ tài khoản đăng nhập thay vì từ form
+        var user = await _userManager.GetUserAsync(User);
+        var userEmail = user?.Email ?? "";
 
+        var cartItems = _cartRepo.GetCartItems();
         var order = new Order
         {
             FirstName = firstName,
             LastName = lastName,
-            Email = email,
+            Email = userEmail,   // ← email từ tài khoản
             Phone = phone,
             Address = address,
             OrderTotal = _cartRepo.GetCartTotal(),
@@ -71,10 +72,10 @@ public class OrdersController : Controller
 
         var placedOrder = _orderRepo.PlaceOrder(order);
         _cartRepo.ClearCart();
+        HttpContext.Session.SetInt32("CartCount", 0);
 
         return RedirectToAction("CheckoutComplete", new { orderId = placedOrder.Id });
     }
-
     // GET /Orders/CheckoutComplete
     public IActionResult CheckoutComplete(int orderId)
     {
