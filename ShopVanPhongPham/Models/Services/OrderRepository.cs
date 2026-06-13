@@ -17,24 +17,22 @@ namespace ShopVanPhongPham.Models.Services
 
         public Order PlaceOrder(Order order)
         {
-            // Chỉ set OrderPlaced và OrderTotal nếu chưa có
             if (order.OrderPlaced == default)
                 order.OrderPlaced = DateTime.Now;
 
             if (order.OrderTotal == 0)
                 order.OrderTotal = _cart.GetCartTotal();
 
-            // KHÔNG tạo lại OrderDetails — dùng data từ controller truyền vào
             _context.Orders.Add(order);
             _context.SaveChanges();
-
             return order;
-        }  
+        }
+
         public List<Order> GetAllOrders()
         {
             return _context.Orders
-                .Include(o => o.OrderDetails)
-                .ThenInclude(od => od.Product)
+                .Include(o => o.OrderDetails)   // không còn CS8620
+                    .ThenInclude(od => od.Product)
                 .OrderByDescending(o => o.OrderPlaced)
                 .ToList();
         }
@@ -43,7 +41,7 @@ namespace ShopVanPhongPham.Models.Services
         {
             return _context.Orders
                 .Include(o => o.OrderDetails)
-                .ThenInclude(od => od.Product)
+                    .ThenInclude(od => od.Product)
                 .Where(o => o.Email == email)
                 .OrderByDescending(o => o.OrderPlaced)
                 .ToList();
