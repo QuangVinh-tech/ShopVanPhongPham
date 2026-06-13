@@ -20,6 +20,8 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            if (TempData["Success"] != null)
+                ViewBag.Success = TempData["Success"];
             return View(_context.Products.ToList());
         }
 
@@ -31,20 +33,35 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             if (imageFile != null && imageFile.Length > 0)
             {
                 var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
-                var savePath = Path.Combine(_env.WebRootPath, "assets", "images", fileName);
+                var dir = Path.Combine(_env.WebRootPath, "assets", "images");
+                Directory.CreateDirectory(dir);
+                var savePath = Path.Combine(dir, fileName);
                 using var stream = new FileStream(savePath, FileMode.Create);
                 await imageFile.CopyToAsync(stream);
                 product.ImageUrl = "/assets/images/" + fileName;
             }
-
-            if (ModelState.IsValid)
+            else
             {
-                _context.Products.Add(product);
-                _context.SaveChanges();
-                TempData["Success"] = "Thêm sản phẩm thành công!";
-                return RedirectToAction("Index");
+                product.ImageUrl = "/assets/images/hopbut.jpg";
             }
-            return View(product);
+
+            ModelState.Remove("ImageUrl");
+
+            if (!ModelState.IsValid)
+            {
+                // Hiện lỗi để debug
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                ViewBag.DebugErrors = string.Join(" | ", errors);
+                return View(product);
+            }
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            TempData["Success"] = $"Đã thêm \"{product.Name}\" thành công!";
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)
@@ -60,20 +77,30 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             if (imageFile != null && imageFile.Length > 0)
             {
                 var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
-                var savePath = Path.Combine(_env.WebRootPath, "assets", "images", fileName);
+                var dir = Path.Combine(_env.WebRootPath, "assets", "images");
+                Directory.CreateDirectory(dir);
+                var savePath = Path.Combine(dir, fileName);
                 using var stream = new FileStream(savePath, FileMode.Create);
                 await imageFile.CopyToAsync(stream);
                 product.ImageUrl = "/assets/images/" + fileName;
             }
 
-            if (ModelState.IsValid)
+            ModelState.Remove("ImageUrl");
+
+            if (!ModelState.IsValid)
             {
-                _context.Products.Update(product);
-                _context.SaveChanges();
-                TempData["Success"] = "Cập nhật thành công!";
-                return RedirectToAction("Index");
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                ViewBag.DebugErrors = string.Join(" | ", errors);
+                return View(product);
             }
-            return View(product);
+
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            TempData["Success"] = $"Đã cập nhật \"{product.Name}\" thành công!";
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
@@ -91,7 +118,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             {
                 _context.Products.Remove(product);
                 _context.SaveChanges();
-                TempData["Success"] = "Xóa thành công!";
+                TempData["Success"] = $"Đã xóa \"{product.Name}\"!";
             }
             return RedirectToAction("Index");
         }

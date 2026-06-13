@@ -1,0 +1,231 @@
+﻿/* ============================================================
+   Admin theme — đồng bộ màu với trang chủ (VPP Shop)
+   Bảng màu lấy từ Views/Shared/_Layout.cshtml:
+     - Navy tối:  #1a1a2e
+     - Navy vừa:  #16213e
+     - Xanh dương: #0f3460
+     - Vàng nhấn: #ffc107
+   ============================================================ */
+
+:root {
+    --vpp-dark: #1a1a2e;
+    --vpp-navy: #16213e;
+    --vpp-blue: #0f3460;
+    --vpp-gold: #ffc107;
+    --vpp-gold-dark: #e0a800;
+    --vpp-bg: #f4f6fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--vpp-bg);
+}
+
+/* ---------------- Layout ---------------- */
+.admin-wrapper {
+    min-height: 100vh;
+}
+
+/* ---------------- Sidebar ---------------- */
+.admin-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--vpp-dark) 0%, var(--vpp-navy) 55%, var(--vpp-blue) 100%);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+    .admin-sidebar .sidebar-brand {
+        padding: 1.25rem 1.25rem;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+        .admin-sidebar .sidebar-brand h5 {
+            color: var(--vpp-gold);
+            letter-spacing: .5px;
+            margin: 0;
+        }
+
+        .admin-sidebar .sidebar-brand small {
+            color: rgba(255,255,255,.55);
+        }
+
+    .admin-sidebar .nav {
+        padding: 1rem .75rem;
+    }
+
+    .admin-sidebar .nav-link {
+        color: rgba(255,255,255,.75);
+        border-radius: 8px;
+        padding: .65rem 1rem;
+        margin-bottom: .25rem;
+        font-weight: 500;
+        border-left: 3px solid transparent;
+        transition: background .15s, color .15s, border-color .15s;
+    }
+
+        .admin-sidebar .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+        }
+
+        .admin-sidebar .nav-link:hover {
+            color: #fff;
+            background: rgba(255,255,255,.06);
+        }
+
+        .admin-sidebar .nav-link.active {
+            color: #fff;
+            background: rgba(255, 193, 7, .12);
+            border-left-color: var(--vpp-gold);
+        }
+
+        .admin-sidebar .nav-link.text-back {
+            color: #ff8a8a;
+        }
+
+            .admin-sidebar .nav-link.text-back:hover {
+                color: #ffb3b3;
+                background: rgba(220, 53, 69, .12);
+            }
+
+    .admin-sidebar hr {
+        border-color: rgba(255,255,255,.1);
+        margin: .75rem 0;
+    }
+
+/* ---------------- Topbar ---------------- */
+.admin-topbar {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    padding: .9rem 1.5rem;
+}
+
+    .admin-topbar h4 {
+        margin: 0;
+        font-weight: 700;
+        color: var(--vpp-dark);
+    }
+
+    .admin-topbar .badge-role {
+        background: var(--vpp-gold);
+        color: var(--vpp-dark);
+        font-weight: 600;
+    }
+
+/* ---------------- Content ---------------- */
+.admin-content {
+    flex: 1 1 auto;
+    padding: 1.75rem;
+}
+
+    /* ---------------- Cards ---------------- */
+    .admin-content .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+
+    .admin-content .card-header {
+        border-radius: 12px 12px 0 0 !important;
+        font-weight: 600;
+    }
+
+/* ---------------- Stat cards (Dashboard) ---------------- */
+.stat-card {
+    border-radius: 14px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,.22);
+    }
+
+    .stat-card .fs-1 {
+        color: var(--vpp-gold);
+        opacity: .9;
+    }
+
+.stat-card-products {
+    background: linear-gradient(135deg, var(--vpp-blue) 0%, var(--vpp-navy) 100%);
+}
+
+.stat-card-orders {
+    background: linear-gradient(135deg, var(--vpp-navy) 0%, var(--vpp-dark) 100%);
+}
+
+.stat-card-users {
+    background: linear-gradient(135deg, var(--vpp-dark) 0%, var(--vpp-blue) 100%);
+}
+
+.stat-card-revenue {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    color: var(--vpp-dark);
+}
+
+    .stat-card-revenue .fs-1 {
+        color: var(--vpp-dark);
+        opacity: .65;
+    }
+
+/* ---------------- Tables ---------------- */
+.admin-content table thead.table-dark th,
+.admin-content table thead.table-admin th {
+    background: linear-gradient(135deg, var(--vpp-dark) 0%, var(--vpp-navy) 100%);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+}
+
+.admin-content .table > :not(caption) > * > * {
+    vertical-align: middle;
+}
+
+/* ---------------- Buttons & badges ---------------- */
+.admin-content .btn {
+    border-radius: 8px;
+}
+
+.admin-content .btn-outline-secondary {
+    border-radius: 8px;
+}
+
+.admin-content .nav-pills .nav-link {
+    border-radius: 50px;
+    font-weight: 500;
+    color: var(--vpp-dark);
+}
+
+    .admin-content .nav-pills .nav-link.active {
+        background: var(--vpp-dark);
+        color: #fff;
+    }
+
+    .admin-content .nav-pills .nav-link:not(.active):hover {
+        background: #eef0f5;
+    }
+
+/* ---------------- Status row hover (Dashboard) ---------------- */
+.status-row {
+    cursor: pointer;
+    transition: background .1s;
+}
+
+    .status-row:hover {
+        background: #f0f2f8;
+    }
