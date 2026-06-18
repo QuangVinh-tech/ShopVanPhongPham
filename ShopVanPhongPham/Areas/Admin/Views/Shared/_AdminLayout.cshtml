@@ -45,6 +45,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link @(IsActive("Contact") ? "active" : "")"
+                       asp-area="Admin" asp-controller="Contact" asp-action="Index">
+                        <i class="bi bi-envelope me-2"></i>Phản hồi
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link @(IsActive("User") ? "active" : "")"
                        asp-area="Admin" asp-controller="User" asp-action="Index">
                         <i class="bi bi-people me-2"></i>Người dùng

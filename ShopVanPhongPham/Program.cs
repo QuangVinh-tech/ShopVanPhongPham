@@ -16,7 +16,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 
-    // Thông báo l?i password ti?ng Vi?t
+    // Thï¿½ng bï¿½o l?i password ti?ng Vi?t
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
