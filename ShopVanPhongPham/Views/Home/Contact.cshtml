@@ -8,47 +8,65 @@
             <div class="col-md-8">
                 <h2 class="text-center mb-4">Liên Hệ Với Chúng Tôi</h2>
 
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-controller="Home" asp-action="Contact" method="post">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Nhập họ và tên của bạn" required />
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                                <input type="text" name="fullName" class="form-control" placeholder="Nhập họ và tên của bạn" required />
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" placeholder="example@email.com" required />
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control" placeholder="example@email.com" required />
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Số điện thoại</label>
-                            <input type="tel" class="form-control" placeholder="0901 234 567" />
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="tel" name="phone" class="form-control" placeholder="0901 234 567" />
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Chủ đề</label>
-                            <select class="form-select">
-                                <option>-- Chọn chủ đề --</option>
-                                <option>Tư vấn sản phẩm</option>
-                                <option>Đặt hàng số lượng lớn</option>
-                                <option>Khiếu nại / Góp ý</option>
-                                <option>Khác</option>
-                            </select>
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Chủ đề</label>
+                                <select name="subject" class="form-select">
+                                    <option value="">-- Chọn chủ đề --</option>
+                                    <option value="Tư vấn sản phẩm">Tư vấn sản phẩm</option>
+                                    <option value="Đặt hàng số lượng lớn">Đặt hàng số lượng lớn</option>
+                                    <option value="Khiếu nại / Góp ý">Khiếu nại / Góp ý</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Nội dung tin nhắn <span class="text-danger">*</span></label>
-                            <textarea class="form-control" rows="5"
-                                      placeholder="Nhập nội dung bạn muốn liên hệ..." required></textarea>
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nội dung tin nhắn <span class="text-danger">*</span></label>
+                                <textarea name="message" class="form-control" rows="5"
+                                          placeholder="Nhập nội dung bạn muốn liên hệ..." required></textarea>
+                            </div>
 
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                📨 Gửi tin nhắn
-                            </button>
-                        </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    📨 Gửi tin nhắn
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
