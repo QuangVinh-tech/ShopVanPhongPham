@@ -84,7 +84,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
         <div class="container">
 
-            <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+            <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
                 <i class="bi bi-pencil-square me-1 text-warning"></i>VPP Shop
             </a>
 
@@ -96,37 +96,33 @@
 
             <div class="collapse navbar-collapse" id="navbarMain">
 
-                <!-- Nav links trái -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                             <i class="bi bi-house-door me-1"></i>Trang chủ
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Product" asp-action="Shop">
+                        <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Shop">
                             <i class="bi bi-grid me-1"></i>Sản phẩm
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">
                             <i class="bi bi-envelope me-1"></i>Liên hệ
                         </a>
                     </li>
                 </ul>
 
-                <!-- Nav links phải -->
                 <ul class="navbar-nav align-items-center gap-1 mb-2 mb-lg-0">
 
-                    <!-- Login / User dropdown — từ _LoginPartial -->
                     @await Html.PartialAsync("_LoginPartial")
 
-                    <!-- Giỏ hàng + badge -->
                     @{
                         var cartCount = Context.Session.GetInt32("CartCount") ?? 0;
                     }
                     <li class="nav-item">
-                        <a asp-controller="ShoppingCart" asp-action="Index"
+                        <a asp-area="" asp-controller="ShoppingCart" asp-action="Index"
                            class="btn btn-outline-warning position-relative ms-1">
                             <i class="bi bi-cart3 me-1"></i>Giỏ hàng
                             @if (cartCount > 0)
@@ -167,17 +163,17 @@
                     <h6 class="text-uppercase text-secondary fw-bold mb-3">Liên kết nhanh</h6>
                     <ul class="list-unstyled small">
                         <li class="mb-1">
-                            <a asp-controller="Home" asp-action="Index">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="bi bi-chevron-right me-1"></i>Trang chủ
                             </a>
                         </li>
                         <li class="mb-1">
-                            <a asp-controller="Product" asp-action="Shop">
+                            <a asp-area="" asp-controller="Product" asp-action="Shop">
                                 <i class="bi bi-chevron-right me-1"></i>Cửa hàng
                             </a>
                         </li>
                         <li class="mb-1">
-                            <a asp-controller="Home" asp-action="Contact">
+                            <a asp-area="" asp-controller="Home" asp-action="Contact">
                                 <i class="bi bi-chevron-right me-1"></i>Liên hệ
                             </a>
                         </li>
@@ -209,7 +205,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!-- AJAX: thêm vào giỏ từ nút .btn-add-cart ở Shop/Index -->
     <script>
         document.addEventListener('click', async function (e) {
             const btn = e.target.closest('.btn-add-cart');
@@ -227,7 +222,6 @@
                 const res  = await fetch('/ShoppingCart/AddToCart', { method: 'POST', body: fd });
                 const data = await res.json();
 
-                // cập nhật badge navbar
                 let badge = document.querySelector('a.btn-outline-warning .badge');
                 if (data.cartCount > 0) {
                     if (badge) {
@@ -239,7 +233,6 @@
                     }
                 }
 
-                // flash ✓ xanh 1 giây
                 btn.innerHTML = '<i class="bi bi-check-lg"></i>';
                 btn.classList.replace('btn-warning', 'btn-success');
                 setTimeout(() => {
