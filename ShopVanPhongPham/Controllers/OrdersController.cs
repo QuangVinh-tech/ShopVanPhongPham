@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ShopVanPhongPham.Helpers;
 using ShopVanPhongPham.Models;
 using ShopVanPhongPham.Models.Interfaces;
 
@@ -11,33 +12,45 @@ public class OrdersController : Controller
     private readonly IOrderRepository _orderRepo;
     private readonly IShoppingCartRepository _cartRepo;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly IConfiguration _config;
 
     public OrdersController(IOrderRepository orderRepo,
                             IShoppingCartRepository cartRepo,
-                            UserManager<IdentityUser> userManager)
+                            UserManager<IdentityUser> userManager,
+                            IConfiguration config)
     {
         _orderRepo = orderRepo;
         _cartRepo = cartRepo;
         _userManager = userManager;
+        _config = config;
     }
 
     // GET /Orders/Checkout
+    [Authorize]
     public IActionResult Checkout()
     {
         var cartItems = _cartRepo.GetCartItems();
-
         if (cartItems == null || !cartItems.Any())
             return RedirectToAction("Index", "ShoppingCart");
+
+        // ← THÊM MỚI: build sẵn QR preview để hiện ngay khi khách chọn "QR" ở trang Checkout
+        var total = _cartRepo.GetCartTotal();
+        var bank = _config.GetSection("BankInfo");
+        ViewBag.QrPreviewUrl = VietQrHelper.BuildQrUrl(
+            bank["BankId"]!, bank["AccountNo"]!, bank["AccountName"]!,
+            total, "Thanh toan VPP Shop");
 
         return View(cartItems);
     }
 
     // POST /Orders/Checkout
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Checkout(
      string firstName, string lastName,
-     string phone, string address)
+     string phone, string address,
+     string paymentMethod)
     {
         if (string.IsNullOrWhiteSpace(firstName) ||
             string.IsNullOrWhiteSpace(lastName) ||
@@ -48,7 +61,6 @@ public class OrdersController : Controller
             return View(_cartRepo.GetCartItems());
         }
 
-        // ← Lấy email từ tài khoản đăng nhập thay vì từ form
         var user = await _userManager.GetUserAsync(User);
         var userEmail = user?.Email ?? "";
 
@@ -57,11 +69,13 @@ public class OrdersController : Controller
         {
             FirstName = firstName,
             LastName = lastName,
-            Email = userEmail,   // ← email từ tài khoản
+            Email = userEmail,
             Phone = phone,
             Address = address,
             OrderTotal = _cartRepo.GetCartTotal(),
             OrderPlaced = DateTime.Now,
+            PaymentMethod = string.IsNullOrWhiteSpace(paymentMethod) ? "COD" : paymentMethod,
+            PaymentStatus = "Chưa thanh toán",
             OrderDetails = cartItems.Select(item => new OrderDetail
             {
                 ProductId = item.ProductId,
@@ -76,11 +90,24 @@ public class OrdersController : Controller
 
         return RedirectToAction("CheckoutComplete", new { orderId = placedOrder.Id });
     }
+
     // GET /Orders/CheckoutComplete
     public IActionResult CheckoutComplete(int orderId)
     {
+        var order = _orderRepo.GetOrderById(orderId);
+        if (order == null) return RedirectToAction("Index", "Home");
+
         ViewBag.OrderId = orderId;
-        return View();
+
+        if (order.PaymentMethod == "QR")
+        {
+            var bank = _config.GetSection("BankInfo");
+            ViewBag.QrUrl = VietQrHelper.BuildQrUrl(
+                bank["BankId"]!, bank["AccountNo"]!, bank["AccountName"]!,
+                order.OrderTotal, $"DH{order.Id}");
+        }
+
+        return View(order);
     }
 
     // GET /Orders/MyOrders

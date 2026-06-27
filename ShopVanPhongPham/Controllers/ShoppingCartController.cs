@@ -15,6 +15,7 @@ namespace ShopVanPhongPham.Controllers
             _context = context;
         }
 
+        // Xem giỏ hàng → vẫn cho phép xem dù chưa đăng nhập
         public IActionResult Index()
         {
             var items = _cart.GetCartItems();
@@ -26,6 +27,9 @@ namespace ShopVanPhongPham.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity = 1)
         {
+            if (!User.Identity!.IsAuthenticated)
+                return RedirectToLogin(Url.Action("Detail", "Product", new { id = productId }));
+
             var product = _context.Products.Find(productId);
             if (product == null) return NotFound();
             _cart.AddToCart(product, quantity);
@@ -36,6 +40,9 @@ namespace ShopVanPhongPham.Controllers
         [HttpPost]
         public IActionResult Remove(int id)
         {
+            if (!User.Identity!.IsAuthenticated)
+                return RedirectToLogin(Url.Action("Index"));
+
             _cart.RemoveFromCart(id);
             TempData["SuccessMessage"] = "Đã xóa sản phẩm khỏi giỏ hàng.";
             return RedirectToAction("Index");
@@ -44,6 +51,9 @@ namespace ShopVanPhongPham.Controllers
         [HttpPost]
         public IActionResult Increase(int productId)
         {
+            if (!User.Identity!.IsAuthenticated)
+                return RedirectToLogin(Url.Action("Index"));
+
             _cart.IncreaseQuantity(productId);
             return RedirectToAction("Index");
         }
@@ -51,6 +61,9 @@ namespace ShopVanPhongPham.Controllers
         [HttpPost]
         public IActionResult Decrease(int productId)
         {
+            if (!User.Identity!.IsAuthenticated)
+                return RedirectToLogin(Url.Action("Index"));
+
             _cart.DecreaseQuantity(productId);
             return RedirectToAction("Index");
         }
@@ -58,9 +71,19 @@ namespace ShopVanPhongPham.Controllers
         [HttpPost]
         public IActionResult Clear()
         {
+            if (!User.Identity!.IsAuthenticated)
+                return RedirectToLogin(Url.Action("Index"));
+
             _cart.ClearCart();
             TempData["SuccessMessage"] = "Đã xóa toàn bộ giỏ hàng.";
             return RedirectToAction("Index");
+        }
+
+        // ← Helper: chuyển về trang Login, sau khi login xong sẽ quay lại đúng trang xem (GET)
+        private IActionResult RedirectToLogin(string? returnUrl)
+        {
+            TempData["ErrorMessage"] = "Bạn cần đăng nhập để thực hiện chức năng này.";
+            return RedirectToPage("/Account/Login", new { area = "Identity", returnUrl });
         }
     }
 }
