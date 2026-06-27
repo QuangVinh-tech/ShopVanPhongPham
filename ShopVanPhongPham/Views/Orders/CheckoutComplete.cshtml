@@ -1,7 +1,7 @@
-﻿@{
+﻿@model ShopVanPhongPham.Models.Order
+@{
     ViewData["Title"] = "Đặt hàng thành công";
 }
-
 <div class="container py-5">
     <div class="text-center mb-5">
         <div style="font-size: 5rem; line-height:1">🎉</div>
@@ -12,30 +12,32 @@
             đang được xử lý.
         </p>
     </div>
-
     <div class="card mx-auto shadow-sm" style="max-width: 480px;">
         <div class="card-header bg-success text-white text-center">
-            <h5 class="mb-0">📋 Mã đơn hàng: #@ViewBag.OrderId</h5>
+            <h5 class="mb-0"> Mã đơn hàng: #@ViewBag.OrderId</h5>
         </div>
         <div class="card-body text-center py-4">
-            <p class="mb-1">📦 Trạng thái:</p>
+            <p class="mb-1"> Trạng thái:</p>
             <span class="badge bg-warning text-dark fs-6 px-3 py-2">
                 Chờ xử lý
             </span>
             <hr />
             <p class="text-muted mb-0">
-                ⏰ Chúng tôi sẽ liên hệ xác nhận trong vòng <strong>30 phút</strong>.
+                 Chúng tôi sẽ liên hệ xác nhận trong vòng <strong>30 phút</strong>.
             </p>
         </div>
         <div class="card-footer bg-transparent d-grid gap-2">
             <a asp-controller="Orders" asp-action="MyOrders"
                class="btn btn-outline-success btn-lg">
-                📦 Xem đơn hàng của tôi
+                 Xem đơn hàng của tôi
             </a>
             <a asp-controller="Home" asp-action="Index"
                class="btn btn-primary btn-lg">
-                🏠 Tiếp tục mua sắm
+                 Tiếp tục mua sắm
             </a>
         </div>
     </div>
+
+  
+  
 </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShopVanPhongPham.Helpers;
 using ShopVanPhongPham.Models.Interfaces;
 
 namespace ShopVanPhongPham.Controllers;
@@ -12,12 +13,10 @@ public class ProductController : Controller
         _productRepo = productRepo;
     }
 
-    // /Product/Shop
     public IActionResult Shop(string? search, string? category)
     {
         var allProducts = _productRepo.GetAllProducts();
 
-        // Lấy danh sách category cho dropdown
         var categories = allProducts
             .Where(p => !string.IsNullOrEmpty(p.Category))
             .Select(p => p.Category!)
@@ -28,12 +27,14 @@ public class ProductController : Controller
         var products = allProducts.AsEnumerable();
 
         if (!string.IsNullOrEmpty(search))
-            products = products
-                .Where(p => p.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
+        {
+            var keyword = StringHelper.RemoveDiacritics(search);   // ← thay đoạn cũ
+            products = products.Where(p =>
+                StringHelper.RemoveDiacritics(p.Name).Contains(keyword));
+        }
 
         if (!string.IsNullOrEmpty(category))
-            products = products
-                .Where(p => p.Category == category);
+            products = products.Where(p => p.Category == category);
 
         ViewBag.Search = search;
         ViewBag.Category = category;
@@ -42,7 +43,6 @@ public class ProductController : Controller
         return View(products.ToList());
     }
 
-    // /Product/Detail/5
     public IActionResult Detail(int id)
     {
         var product = _productRepo.GetProductById(id);

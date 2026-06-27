@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models;
@@ -18,12 +19,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var products = _productRepo.GetAllProducts(); // ← không await
+        var products = _productRepo.GetAllProducts(); 
         return View(products.ToList());
     }
 
     public IActionResult Contact() => View();
-
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Contact(string fullName, string email, string phone, string subject, string message)

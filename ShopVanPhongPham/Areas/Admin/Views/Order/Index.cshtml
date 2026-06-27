@@ -14,7 +14,7 @@
     };
 }
 
-<h2 class="fw-bold mb-4">🧾 Quản lý đơn hàng</h2>
+<h2 class="fw-bold mb-4">Quản lý đơn hàng</h2>
 
 @if (TempData["Success"] != null)
 {
@@ -42,25 +42,25 @@
     <li class="nav-item">
         <a class="nav-link @(currentFilter == "Chờ xử lý" ? "active" : "")"
            asp-action="Index" asp-route-status="Chờ xử lý">
-            ⏳ Chờ xử lý <span class="badge bg-warning text-dark ms-1">@ViewBag.PendingOrders</span>
+            Chờ xử lý <span class="badge bg-warning text-dark ms-1">@ViewBag.PendingOrders</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link @(currentFilter == "Đang giao" ? "active" : "")"
            asp-action="Index" asp-route-status="Đang giao">
-            🚚 Đang giao <span class="badge bg-info text-dark ms-1">@ViewBag.ShippingOrders</span>
+            Đang giao <span class="badge bg-info text-dark ms-1">@ViewBag.ShippingOrders</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link @(currentFilter == "Đã giao" ? "active" : "")"
            asp-action="Index" asp-route-status="Đã giao">
-            ✅ Đã giao <span class="badge bg-success ms-1">@ViewBag.DoneOrders</span>
+            Đã giao <span class="badge bg-success ms-1">@ViewBag.DoneOrders</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link @(currentFilter == "Đã hủy" ? "active" : "")"
            asp-action="Index" asp-route-status="Đã hủy">
-            ❌ Đã hủy <span class="badge bg-danger ms-1">@ViewBag.CancelledOrders</span>
+            Đã hủy <span class="badge bg-danger ms-1">@ViewBag.CancelledOrders</span>
         </a>
     </li>
 </ul>

@@ -46,5 +46,12 @@ namespace ShopVanPhongPham.Models.Services
                 .OrderByDescending(o => o.OrderPlaced)
                 .ToList();
         }
+        public Order? GetOrderById(int id)
+        {
+            return _context.Orders
+                .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.Product)
+                .FirstOrDefault(o => o.Id == id);
+        }
     }
 }

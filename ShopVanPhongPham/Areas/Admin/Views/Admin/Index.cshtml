@@ -12,7 +12,7 @@
     var urlCancel = Url.Action("Index", "Order", new { area = "Admin", status = "Đã hủy" });
 }
 
-<h2 class="fw-bold mb-4">📊 Dashboard</h2>
+<h2 class="fw-bold mb-4">Dashboard</h2>
 
 @* 4 thẻ thống kê — dùng onclick="location.href" để chắc chắn navigate *@
 <div class="row g-4 mb-4">
@@ -67,27 +67,27 @@
 
 @* Trạng thái đơn hàng — mỗi dòng click được *@
 <div class="card shadow-sm">
-    <div class="card-header fw-bold bg-light">📦 Đơn hàng theo trạng thái</div>
+    <div class="card-header fw-bold bg-light">Đơn hàng theo trạng thái</div>
     <div class="card-body p-0">
         <div class="list-group list-group-flush">
             <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
                  onclick="location.href='@urlPending'">
-                <span>⏳ Chờ xử lý</span>
+                <span>Chờ xử lý</span>
                 <span class="badge bg-warning text-dark fs-6 px-3">@ViewBag.PendingOrders</span>
             </div>
             <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
                  onclick="location.href='@urlShip'">
-                <span>🚚 Đang giao</span>
+                <span>Đang giao</span>
                 <span class="badge bg-info text-dark fs-6 px-3">@ViewBag.ShippingOrders</span>
             </div>
             <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
                  onclick="location.href='@urlDone'">
-                <span>✅ Đã giao</span>
+                <span>Đã giao</span>
                 <span class="badge bg-success fs-6 px-3">@ViewBag.DoneOrders</span>
             </div>
             <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
                  onclick="location.href='@urlCancel'">
-                <span>❌ Đã hủy</span>
+                <span>Đã hủy</span>
                 <span class="badge bg-danger fs-6 px-3">@ViewBag.CancelledOrders</span>
             </div>
         </div>
